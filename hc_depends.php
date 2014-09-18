@@ -5,12 +5,19 @@ Description: Set plugin dependencies and alter load order accordingly
 Author: Don Denton
 Version: 1.0
 Author URI: http://happycollision.com
-Depends: Happy Collision Testing Functions
 */
 
 //cover my bases with hcwarn() and hcprint()
 if(!function_exists('hcwarn')) {
 	function hcwarn() {error_log('Did not find ' . __FUNCTION__);}
+	
+	add_action( 'admin_notices', 'happycol_it_all_depends_custom_error_notice' );
+	function happycol_it_all_depends_custom_error_notice(){
+		echo '<div class="error">';
+		echo '<p><strong>It All Depends</strong> has a dependency of it\'s own... you need to activate <strong>Happy Collision Testing Functions</strong> to get the most out of this plugin. If you don\'t see it in your list... <a href="mailto:don@happycollision.com">contact Don Denton</a>.</p>';
+		echo '</div>';
+	}
+
 }
 if(!function_exists('hcprint')) {
 	function hcprint() {error_log('Did not find ' . __FUNCTION__);}
